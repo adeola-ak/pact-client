@@ -20,7 +20,6 @@ const Login = (props) => {
 	const handleSubmit = (event) => {
 		event.preventDefault();
 		const { username, password } = formData;
-
 		fetch(`${url}/auth/login`, {
 			method: "POST",
 			headers: {
@@ -31,9 +30,14 @@ const Login = (props) => {
 			.then((response) => response.json())
 			.then((data) => {
 				console.log(data);
+				window.localStorage.setItem("token", JSON.stringify(data));
 				setGlobalState({ ...globalState, token: data.token });
 				setFormData(blank);
-				props.history.push("/dashboard");
+				if (data.token) {
+					props.history.push("/dashboard");
+				} else {
+					console.log("error");
+				}
 			});
 	};
 	return (
