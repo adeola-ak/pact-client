@@ -2,8 +2,10 @@ import React, { useEffect, useState } from "react";
 import "./App.css";
 import Nav from "../src/components/Nav.js";
 import { Switch, Route, Link } from "react-router-dom";
-import Signup from "../src/pages/Signup";
-import Login from "../src/pages/Login";
+import Signup from "./pages/signup";
+import Login from "./pages/login";
+import Home from "./pages/home";
+import Dashboard from "./pages/dashboard";
 
 export const GlobalCtx = React.createContext(null);
 
@@ -35,11 +37,7 @@ function App() {
 							exact
 							path="/"
 							render={(rp) =>
-								globalState.token ? (
-									<h1>Dashboard</h1>
-								) : (
-									<h1>home</h1>
-								)
+								globalState.token ? <Dashboard /> : <Home />
 							}
 						/>
 
@@ -53,10 +51,10 @@ function App() {
 							render={(rp) => <Login {...rp} />}
 						/>
 
-						{/* <Route
+						<Route
 							path="/dashboard"
-							render={(rp) => <h1>dashboard</h1>}
-						/> */}
+							render={(rp) => <Dashboard />}
+						/>
 					</Switch>
 				</main>
 			</div>

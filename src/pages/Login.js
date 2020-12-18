@@ -3,7 +3,6 @@ import { GlobalCtx } from "../App";
 
 const Login = (props) => {
 	const { globalState, setGlobalState } = React.useContext(GlobalCtx);
-
 	const { url } = globalState;
 
 	const blank = {

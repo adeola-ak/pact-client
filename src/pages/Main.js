@@ -11,18 +11,6 @@ const Main = () => {
 	// 	.then((response) => response.json())
 	// 	.then((data) => console.log(data));
 
-	//create a package
-	// fetch("http://localhost:3000/package", {
-	// 	method: "POST",
-	// 	headers: {
-	// 		"Content-Type": "application/json",
-	// 		Authorization: `Bearer ${token}`,
-	// 	},
-	// 	body: JSON.stringify({ company: "", value: "", day_policy: "" }),
-	// })
-	// 	.then((response) => response.json())
-	// 	.then((data) => console.log(data));
-
 	return;
 };
 
