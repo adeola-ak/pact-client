@@ -9,10 +9,6 @@ const Dashboard = (props) => {
 	const [value, setValue] = useState("");
 	const [dayPolicy, setDayPolicy] = useState("");
 
-	const blank = "";
-
-	const [formData, setFormData] = useState(blank);
-
 	const getPackages = async () => {
 		const response = await fetch(`${url}/package/`, {
 			method: "GET",
@@ -25,15 +21,7 @@ const Dashboard = (props) => {
 	};
 	useEffect(() => {
 		getPackages();
-	}, []);
-
-	// const handleChange = (event) => {
-	// 	setFormData({
-	// 		...formData,
-	// 		[event.target.name]: event.target.value,
-	// 	});
-	// 	console.log(formData);
-	// };
+	});
 
 	const handleCompanyChange = (event) => {
 		setCompany(event.target.value);
@@ -55,18 +43,34 @@ const Dashboard = (props) => {
 			},
 			body: JSON.stringify({ company, value, dayPolicy }),
 		})
-			.then((response) => response.json())
-			.then((data) => {
+			.then((response) => {
+				response.json();
+			})
+
+			.then(() => {
 				setCompany("");
 				setValue("");
 				setDayPolicy("");
 				getPackages();
-				// setFormData(blank);
-				// setCompany(blank);
-				// setValue(blank);
-				// setDayPolicy(blank);
 			});
 	};
+
+	const handleDelete = (id) => {
+		fetch(`${url}/package/${id}`, {
+			method: "DELETE",
+			headers: {
+				"Content-Type": "application/json",
+				Authorization: `Bearer ${token}`,
+			},
+		})
+			.then((response) => response.json())
+			.then((data) => {
+				getPackages();
+			});
+	};
+
+	const handleUpdate = () => {};
+
 	return (
 		<div>
 			<h1>dashboard</h1>
@@ -95,9 +99,15 @@ const Dashboard = (props) => {
 			<h2>packages</h2>
 			<ul>
 				{packages
-					? packages.map((package_item) => (
-							<li key={package_item._id}>
-								{package_item.company}
+					? packages.map((item) => (
+							<li key={item._id}>
+								<h3>{item.company}</h3>
+								<h4>{item.value}</h4>
+								<h5>{item.dayPolicy}</h5>
+								<button>edit</button>
+								<button onClick={() => handleDelete(item._id)}>
+									delete
+								</button>
 							</li>
 					  ))
 					: null}

@@ -21,7 +21,7 @@ const Nav = () => {
 							setGlobalState({ ...globalState, token: null });
 						}}
 					>
-						Logout
+						logout
 					</h2>
 				</Link>
 			) : null}

@@ -32,11 +32,7 @@ const Login = (props) => {
 				window.localStorage.setItem("token", JSON.stringify(data));
 				setGlobalState({ ...globalState, token: data.token });
 				setFormData(blank);
-				if (data.token) {
-					props.history.push("/dashboard");
-				} else {
-					console.log("error");
-				}
+				props.history.push("/dashboard");
 			});
 	};
 	return (
