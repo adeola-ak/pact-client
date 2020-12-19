@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { GlobalCtx } from "../App";
+import { GlobalCtx } from "../../App";
 
 const Dashboard = (props) => {
 	const { globalState, setGlobalState } = React.useContext(GlobalCtx);
@@ -55,6 +55,25 @@ const Dashboard = (props) => {
 			});
 	};
 
+	//   const handleUpdate = () => {
+	// 		console.log(input);
+	// 		const note = update.current.value;
+	// 		fetch(url + "/note/" + updateID, {
+	// 			method: "put",
+	// 			headers: {
+	// 				"Content-Type": "application/json",
+	// 				Authorization: `bearer ` + token,
+	// 			},
+	// 			body: JSON.stringify({ note }),
+	// 		})
+	// 			.then((response) => response.json())
+	// 			.then((data) => {
+	// 				update.current.value = "";
+	// 				setUpdateID(null);
+	// 				getNotes();
+	// 			});
+	//   };
+
 	const handleDelete = (id) => {
 		fetch(`${url}/package/${id}`, {
 			method: "DELETE",
@@ -98,19 +117,21 @@ const Dashboard = (props) => {
 			</form>
 			<h2>packages</h2>
 			<ul>
-				{packages
-					? packages.map((item) => (
-							<li key={item._id}>
-								<h3>{item.company}</h3>
-								<h4>{item.value}</h4>
-								<h5>{item.dayPolicy}</h5>
-								<button>edit</button>
-								<button onClick={() => handleDelete(item._id)}>
-									delete
-								</button>
-							</li>
-					  ))
-					: null}
+				{packages ? (
+					packages.map((item) => (
+						<li key={item._id}>
+							<h3>{item.company}</h3>
+							<h4>{item.value}</h4>
+							<h5>{item.dayPolicy}</h5>
+							<button>edit</button>
+							<button onClick={() => handleDelete(item._id)}>
+								delete
+							</button>
+						</li>
+					))
+				) : (
+					<h1>loading</h1>
+				)}
 			</ul>
 		</div>
 	);

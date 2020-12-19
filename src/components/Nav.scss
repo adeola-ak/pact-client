@@ -19,16 +19,15 @@
 	flex-direction: row;
 	justify-content: space-between;
 	background-color: #bbcde5;
+	align-content: center;
 }
 
 .desktopList {
 	display: none;
-	/* I just copied from title just to have a starting point */
 	text-decoration: none;
 	color: #1c5d99;
 	font-size: 20px;
 	padding: 20px;
-	/* this is needed if you continue to have this be a smaller font than the title */
 	align-self: center;
 }
 

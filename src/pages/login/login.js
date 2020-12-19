@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { GlobalCtx } from "../App";
+import { GlobalCtx } from "../../App";
 
 const Login = (props) => {
 	const { globalState, setGlobalState } = React.useContext(GlobalCtx);

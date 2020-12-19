@@ -2,10 +2,10 @@ import React, { useEffect, useState } from "react";
 import "./App.css";
 import Nav from "../src/components/Nav.js";
 import { Switch, Route, Link } from "react-router-dom";
-import Signup from "./pages/signup";
-import Login from "./pages/login";
-import Home from "./pages/home";
-import Dashboard from "./pages/dashboard";
+import Signup from "./pages/signup/signup";
+import Login from "./pages/login/login";
+import Home from "./pages/home/home";
+import Dashboard from "./pages/dashboard/dashboard";
 
 export const GlobalCtx = React.createContext(null);
 
