@@ -1,0 +1,74 @@
+@import url("https://fonts.googleapis.com/css2?family=Special+Elite&display=swap");
+
+.appTitle {
+	text-decoration: none;
+	color: #639fab;
+	font-size: 48px;
+	padding: 10px;
+	font-family: "Special Elite", cursive;
+}
+
+.header-container {
+	position: sticky;
+	top: 0px;
+	z-index: 1px;
+}
+
+.header {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	background-color: #bbcde5;
+}
+
+.desktopList {
+	display: none;
+	/* I just copied from title just to have a starting point */
+	text-decoration: none;
+	color: #1c5d99;
+	font-size: 20px;
+	padding: 20px;
+	/* this is needed if you continue to have this be a smaller font than the title */
+	align-self: center;
+}
+
+#linksList {
+	display: none;
+	justify-content: center;
+	background-color: white;
+	font-size: 30px;
+	padding: 10px;
+}
+
+#mobileNav {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+.mobileList {
+	text-decoration: none;
+	color: rgb(201, 74, 17);
+	font-size: 20px;
+}
+/* font size of .appTitle and .navIcon need to be modified together to make it look good. the Icon has empty space as part of its size so it has to be adjusted manually */
+
+.navIcon {
+	font-size: 46px;
+	margin-left: 50%;
+}
+
+/* To just show the about and remove bars for screen sizes above tablet */
+@media (min-width: 769px) {
+	#linksList {
+		display: none;
+		justify-content: flex-end;
+	}
+	.navIcon {
+		display: none;
+	}
+	/* This is for the about on the desktop screen */
+	.desktopList {
+		display: inline;
+	}
+}

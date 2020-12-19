@@ -27,9 +27,6 @@ function App() {
 	return (
 		<GlobalCtx.Provider value={{ globalState, setGlobalState }}>
 			<div className="App">
-				<Link to="/">
-					<h1>PACT</h1>
-				</Link>
 				<Nav />
 				<main>
 					<Switch>
@@ -37,10 +34,12 @@ function App() {
 							exact
 							path="/"
 							render={(rp) =>
+								// globalState.token ? <Dashboard /> : <Home />
 								globalState.token ? <Dashboard /> : <Home />
 							}
 						/>
 
+						<Route path="/home" render={(rp) => <Home {...rp} />} />
 						<Route
 							path="/signup"
 							render={(rp) => <Signup {...rp} />}
