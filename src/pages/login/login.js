@@ -38,12 +38,14 @@ const Login = (props) => {
 	return (
 		<div>
 			<form onSubmit={handleSubmit}>
+				<label>username</label>
 				<input
 					type="text"
 					name="username"
 					value={formData.username}
 					onChange={handleChange}
 				/>
+				<label>password</label>
 				<input
 					type="password"
 					name="password"

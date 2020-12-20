@@ -4,7 +4,7 @@ import { GlobalCtx } from "../../App";
 const Dashboard = (props) => {
 	const { globalState, setGlobalState } = React.useContext(GlobalCtx);
 	const { url, token } = globalState;
-	const [packages, setPackages] = useState(null);
+	const [packages, setPackages] = useState("");
 	const [company, setCompany] = useState("");
 	const [value, setValue] = useState("");
 	const [dayPolicy, setDayPolicy] = useState("");
@@ -21,7 +21,7 @@ const Dashboard = (props) => {
 	};
 	useEffect(() => {
 		getPackages();
-	});
+	}, []);
 
 	const handleCompanyChange = (event) => {
 		setCompany(event.target.value);
@@ -117,18 +117,20 @@ const Dashboard = (props) => {
 			</form>
 			<h2>packages</h2>
 			<ul>
-				{packages ? (
-					packages.map((item) => (
-						<li key={item._id}>
-							<h3>{item.company}</h3>
-							<h4>{item.value}</h4>
-							<h5>{item.dayPolicy}</h5>
-							<button>edit</button>
-							<button onClick={() => handleDelete(item._id)}>
-								delete
-							</button>
-						</li>
-					))
+				{packages !== null ? (
+					packages.map((item) => {
+						return (
+							<li key={item._id}>
+								<h3>{item.company}</h3>
+								<h4>{item.value}</h4>
+								<h5>{item.dayPolicy}</h5>
+								<button>edit</button>
+								<button onClick={() => handleDelete(item._id)}>
+									delete
+								</button>
+							</li>
+						);
+					})
 				) : (
 					<h1>loading</h1>
 				)}

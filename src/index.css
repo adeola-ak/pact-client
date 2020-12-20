@@ -12,7 +12,7 @@ code {
 		monospace;
 }
 
-input[type="text"] {
+/* input[type="text"] {
 	padding: 5px;
 	margin: 8px;
 	background-color: bisque;
@@ -26,4 +26,4 @@ input[type="password"] {
 	background-color: bisque;
 	color: purple;
 	border: none;
-}
+} */
