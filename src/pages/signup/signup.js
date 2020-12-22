@@ -1,11 +1,15 @@
 import React, { useState } from "react";
 import { GlobalCtx } from "../../App";
+require("dotenv").config();
+
+// const BASIC = process.env.REACT_APP_BASIC_PRICE_ID;
+// const PRO = process.env.REACT_APP_PRO_PRICE_ID;
 
 const Signup = (props) => {
 	const { globalState, setGlobalState } = React.useContext(GlobalCtx);
 	const { url } = globalState;
-	const [basicSubscription, setBasicSubscription] = useState("");
-	const [proSubscription, setProSubscription] = useState("");
+	// const [basicSubscription, setBasicSubscription] = useState("");
+	// const [proSubscription, setProSubscription] = useState("");
 
 	const blank = {
 		username: "",
@@ -55,7 +59,33 @@ const Signup = (props) => {
 			});
 	};
 
-	const handleSubscribeBasicClick = () => {
+	// var handleFetchResult = function (result) {
+	// 	if (!result.ok) {
+	// 		return result
+	// 			.json()
+	// 			.then(function (json) {
+	// 				if (json.error && json.error.message) {
+	// 					throw new Error(
+	// 						result.url +
+	// 							" " +
+	// 							result.status +
+	// 							" " +
+	// 							json.error.message
+	// 					);
+	// 				}
+	// 			})
+	// 			.catch(function (err) {
+	// 				showErrorMessage(err);
+	// 				throw err;
+	// 			});
+	// 	}
+	// 	return result.json();
+	// };
+
+	const basicPrice = "price_1Hysb2AOzHmZJW0INYWigibP";
+	const proPrice = "price_1HysehAOzHmZJW0ICNl84dxX";
+
+	const handleSubscribeBasicClick = (basicPrice) => {
 		console.log("test");
 		setFormData({
 			...formData,
@@ -69,7 +99,24 @@ const Signup = (props) => {
 			...formData,
 			subscription: "PRO",
 		});
-		console.log(formData);
+		fetch("/create-checkout-session", {
+			method: "POST",
+			headers: {
+				"Content-Type": "application/json",
+			},
+			body: JSON.stringify({
+				priceId: proPrice,
+			}),
+		})
+			.then((resp) => resp.json())
+			.then((data) => {
+				console.log(data);
+				stripe
+					.redirectToCheckout({
+						sessionId: data.sessionId,
+					})
+					.then(console.log(sessionId));
+			});
 	};
 
 	return (
@@ -115,13 +162,6 @@ const Signup = (props) => {
 					onChange={handleChange}
 				/>
 				<br></br>
-				<input
-					type="text"
-					name="subscription"
-					value={formData.subscription}
-					onChange={handleChange}
-					style={{ display: "none" }}
-				/>
 				<div
 					style={{
 						display: "flex",
